@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState, useMemo } from "react";
 import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { useLoaderData, useActionData, useFetcher, Link } from "react-router";
