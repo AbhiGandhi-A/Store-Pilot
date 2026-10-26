@@ -1,0 +1,47 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "292cad58b323a1831cd37152d118ec39"
+application_url = "https://specialty-familiar-blogs-awards.trycloudflare.com"
+embedded = true
+name = "stockpilot"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,read_inventory,read_locations,read_orders,write_products"
+
+[webhooks]
+api_version = "2027-01"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = [ "app/uninstalled" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/scopes_update"
+  topics = [ "app/scopes_update" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/products/update"
+  topics = [ "products/update" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/products/delete"
+  topics = [ "products/delete" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/inventory_levels/update"
+  topics = [ "inventory_levels/update" ]
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/inventory_items/update"
+  topics = [ "inventory_items/update" ]
+
+  [[webhooks.subscriptions]]
+uri = "/webhooks/locations/update"
+  topics = [ "locations/update" ]
+
+[auth]
+redirect_urls = [ "https://specialty-familiar-blogs-awards.trycloudflare.com/api/auth" ]
+
+[build]
+automatically_update_urls_on_dev = true
