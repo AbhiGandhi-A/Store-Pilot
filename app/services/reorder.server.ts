@@ -1,6 +1,6 @@
 import prisma from "~/db.server";
 import { Decimal } from "@prisma/client/runtime/library";
-import { analyzeInventory, type AnalysisResult, type InventoryFinding } from "~/services/inventory.intelligence.server";
+import { analyzeInventory, type InventoryFinding } from "~/services/inventory.intelligence.server";
 import { AdminGraphQL } from "~/services/shopify.admin.server";
 import type { Prisma } from "@prisma/client";
 
@@ -65,8 +65,6 @@ export async function getReorderSuggestions(
 
   for (const finding of relevantFindings) {
     const sp = supplierProductMap.get(finding.variantId);
-    const supplier = sp?.supplier;
-
     let suggestedOrderQty = finding.suggestedReorderQuantity ?? 0;
     if (sp?.minOrderQty && sp.minOrderQty > suggestedOrderQty) {
       suggestedOrderQty = sp.minOrderQty;

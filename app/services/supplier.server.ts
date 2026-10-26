@@ -114,7 +114,7 @@ export interface PurchaseOrderItem {
   supplierProduct?: SupplierProduct | null;
 }
 
-function generatePONumber(shopId: string): string {
+function generatePONumber(): string {
   const date = new Date();
   const year = date.getFullYear().toString().slice(-2);
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -431,7 +431,7 @@ export async function createPurchaseOrder(shopId: string, input: PurchaseOrderIn
   if (!supplier) throw new Error("Supplier not found");
   if (!supplier.isActive) throw new Error("Supplier is inactive");
 
-  const poNumber = generatePONumber(shopId);
+  const poNumber = generatePONumber();
 
   return prisma.purchaseOrder.create({
     data: {

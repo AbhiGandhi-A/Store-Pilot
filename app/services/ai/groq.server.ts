@@ -51,12 +51,9 @@ export function sanitizeModel(model: string | undefined): string {
 }
 
 let cachedConfig: GroqConfig | null = null;
-let configValidated = false;
-
 function getGroqConfig(): GroqConfig | null {
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
-    configValidated = true;
     return null;
   }
 

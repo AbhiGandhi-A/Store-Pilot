@@ -7,7 +7,6 @@ import {
   getOrCreateShop,
   parseShopifyId,
   sanitizeError,
-  type ShopifyProduct,
   type ShopifyProductWithInventory,
   type ShopifyLocation,
   type ShopifyInventoryLevel,
