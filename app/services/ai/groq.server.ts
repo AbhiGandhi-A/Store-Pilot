@@ -70,7 +70,6 @@ function getGroqConfig(): GroqConfig | null {
   }
 
   cachedConfig = { apiKey, model };
-  configValidated = true;
   return cachedConfig;
 }
 
