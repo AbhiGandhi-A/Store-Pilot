@@ -18,22 +18,22 @@ if (
 const host = new URL(process.env.SHOPIFY_APP_URL || "http://localhost")
   .hostname;
 
-let hmrConfig;
-if (host === "localhost") {
-  hmrConfig = {
-    protocol: "ws",
-    host: "localhost",
-    port: 64999,
-    clientPort: 64999,
-  };
-} else {
-  hmrConfig = {
-    protocol: "wss",
-    host: host,
-    port: parseInt(process.env.FRONTEND_PORT!) || 8002,
-    clientPort: 443,
-  };
-}
+const isVercelPreview = Boolean(process.env.VERCEL || process.env.VERCEL_ENV);
+const hmrConfig = isVercelPreview
+  ? undefined
+  : host === "localhost"
+    ? {
+        protocol: "ws" as const,
+        host: "localhost",
+        port: 64999,
+        clientPort: 64999,
+      }
+    : {
+        protocol: "wss" as const,
+        host,
+        port: parseInt(process.env.FRONTEND_PORT || "", 10) || 8002,
+        clientPort: 443,
+      };
 
 export default defineConfig({
   server: {
@@ -42,7 +42,7 @@ export default defineConfig({
       preflightContinue: true,
     },
     port: Number(process.env.PORT || 3000),
-    hmr: hmrConfig,
+    ...(hmrConfig ? { hmr: hmrConfig } : {}),
     fs: {
       // See https://vitejs.dev/config/server-options.html#server-fs-allow for more information
       allow: ["app", "node_modules"],
