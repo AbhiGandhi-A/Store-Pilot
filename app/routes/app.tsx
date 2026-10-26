@@ -48,7 +48,7 @@ export default function App() {
           <nav className="sp-primary-nav" aria-label="Main navigation">
             {navItems.map((item) => {
               const isActive = location.pathname === item.to || (item.to !== "/app" && location.pathname.startsWith(item.to));
-              return <Link key={item.to} to={item.to} className={`sp-primary-nav-item ${isActive ? "active" : ""}`} aria-current={isActive ? "page" : undefined}>
+              return <Link key={item.to} to={item.to} reloadDocument className={`sp-primary-nav-item ${isActive ? "active" : ""}`} aria-current={isActive ? "page" : undefined}>
                 <NavIcon name={item.icon} /><span><strong>{item.label}</strong><small>{item.description}</small></span>
               </Link>;
             })}

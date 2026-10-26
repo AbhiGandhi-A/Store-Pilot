@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "react-router build",
-    "dev": " cloudflared tunnel run shopify & shopify app dev --tunnel-url=https://dd-75.dynamicdreamz.net:3000",
+    "dev": "react-router dev",
     "tunnel": "cloudflared tunnel run shopify",
     "shopify:dev": "shopify app dev --tunnel-url=https://dd-75.dynamicdreamz.net:3000",
     "config:link": "shopify app config link",
